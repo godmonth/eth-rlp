@@ -3,7 +3,7 @@
 	<groupId>com.godmonth.eth</groupId>
 	<artifactId>eth-rlp</artifactId>
 	<version>0.1.4-SNAPSHOT</version>
-	<name>ethereum rlp codec21</name>
+	<name>ethereum rlp codec</name>
 	<url>https://github.com/godmonth/eth-rlp</url>
 	<developers>
 		<developer>
@@ -148,4 +148,5 @@
 			</build>
 		</profile>
 	</profiles>
+	<description>ethereum rlp codec</description>
 </project>
