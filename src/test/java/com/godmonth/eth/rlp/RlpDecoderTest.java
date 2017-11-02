@@ -1,9 +1,14 @@
-package sy.rlp;
+package com.godmonth.eth.rlp;
 
 import java.util.List;
 
 import org.apache.commons.lang3.ArrayUtils;
 import org.testng.annotations.Test;
+
+import com.godmonth.eth.rlp.RLPElement;
+import com.godmonth.eth.rlp.RLPItem;
+import com.godmonth.eth.rlp.RLPList;
+import com.godmonth.eth.rlp.RlpDecoder;
 
 public class RlpDecoderTest {
 
@@ -56,5 +61,15 @@ public class RlpDecoderTest {
 			System.out.println(new String(rlpItem.getRLPData()));
 		}
 
+	}
+
+	@Test
+	public void a111() {
+		{
+			byte[] b = new byte[] { (byte) 0x9f };
+
+			int asIntBigEndian = RlpDecoder.asIntBigEndian(b);
+			System.out.println(asIntBigEndian);
+		}
 	}
 }

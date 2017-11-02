@@ -15,7 +15,7 @@
  * You should have received a copy of the GNU Lesser General Public License
  * along with the ethereumJ library. If not, see <http://www.gnu.org/licenses/>.
  */
-package sy.rlp;
+package com.godmonth.eth.rlp;
 
 import java.util.List;
 import org.apache.commons.lang3.builder.ToStringBuilder;

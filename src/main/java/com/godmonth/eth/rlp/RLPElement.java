@@ -15,34 +15,16 @@
  * You should have received a copy of the GNU Lesser General Public License
  * along with the ethereumJ library. If not, see <http://www.gnu.org/licenses/>.
  */
-package sy.rlp;
+package com.godmonth.eth.rlp;
 
-import org.apache.commons.lang3.builder.ToStringBuilder;
-import org.apache.commons.lang3.builder.ToStringStyle;
+import java.io.Serializable;
 
 /**
+ * Wrapper class for decoded elements from an RLP encoded byte array.
+ *
  * @author Roman Mandeleil
- * @since 21.04.14
+ * @since 01.04.2014
  */
-public class RLPItem implements RLPElement {
-
-	private final byte[] rlpData;
-
-	public RLPItem(byte[] rlpData) {
-		this.rlpData = rlpData;
-	}
-
-	public byte[] getRLPData() {
-		if (rlpData.length == 0)
-			return null;
-		return rlpData;
-	}
-
-	/**
-	 * @see java.lang.Object#toString()
-	 */
-	public String toString() {
-		return new ToStringBuilder(this, ToStringStyle.MULTI_LINE_STYLE).append("rlpData", this.rlpData).toString();
-	}
+public interface RLPElement extends Serializable {
 
 }
