@@ -24,12 +24,6 @@
 		<url>https://github.com/godmonth/eth-rlp</url>
 		<tag>HEAD</tag>
 	</scm>
-	<distributionManagement>
-		<snapshotRepository>
-			<id>ossrh</id>
-			<url>https://oss.sonatype.org/content/repositories/snapshots</url>
-		</snapshotRepository>
-	</distributionManagement>
 	<build>
 		<plugins>
 			<plugin>
