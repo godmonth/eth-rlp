@@ -23,16 +23,15 @@ public class RlpDecoder {
 		} else if (unsignedInt >= 128 && unsignedInt < 184) {
 			int arrayLength = unsignedInt - 128;
 			if (arrayLength > byteBuffer.remaining()) {
-
 				throw new IllegalArgumentException("arrayLength:" + arrayLength + "," + byteBuffer.toString());
 			}
 			byte[] subarray = new byte[arrayLength];
-
 			byteBuffer.get(subarray);
 			return new RLPItem(subarray);
 		} else if (unsignedInt >= 184 && unsignedInt < 192) {
-			int arrayLength = getExtendArrayLength(unsignedInt - 184, byteBuffer);
+			int arrayLength = getExtendArrayLength(unsignedInt - 183, byteBuffer);
 			byte[] subarray = new byte[arrayLength];
+			byteBuffer.get(subarray);
 			return new RLPItem(subarray);
 		} else if (unsignedInt >= 192 && unsignedInt < 247) {
 			int listLength = unsignedInt - 192;

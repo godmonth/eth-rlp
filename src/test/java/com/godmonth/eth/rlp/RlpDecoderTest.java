@@ -72,4 +72,19 @@ public class RlpDecoderTest {
 			System.out.println(asIntBigEndian);
 		}
 	}
+
+	@Test
+	public void a3a3() {
+		{
+			byte[] b = new byte[] { (byte) (0x81) };
+			System.out.println(b[0]);
+			int asIntBigEndian = RlpDecoder.asIntBigEndian(b);
+			System.out.println(asIntBigEndian);
+		}
+	}
+
+	@Test
+	public void testName() throws Exception {
+		System.out.println(ArrayUtils.toString("".getBytes()));
+	}
 }
