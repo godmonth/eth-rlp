@@ -2,7 +2,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>com.godmonth.eth</groupId>
 	<artifactId>eth-rlp</artifactId>
-	<version>0.1.4</version>
+	<version>0.1.5-SNAPSHOT</version>
 	<name>ethereum rlp codec</name>
 	<url>https://github.com/godmonth/eth-rlp</url>
 	<developers>
@@ -21,7 +21,7 @@
 		<connection>scm:git:git@github.com:godmonth/eth-rlp.git</connection>
 		<developerConnection>scm:git:git@github.com:godmonth/eth-rlp.git</developerConnection>
 		<url>https://github.com/godmonth/eth-rlp</url>
-		<tag>eth-rlp-0.1.4</tag>
+		<tag>HEAD</tag>
 	</scm>
 	<build>
 		<plugins>
