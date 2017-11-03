@@ -8,9 +8,12 @@ maven dependency
 		<dependency>
 			<groupId>com.godmonth.eth</groupId>
 			<artifactId>eth-rlp</artifactId>
-			<version>0.1</version>
+			<version>0.1.4</version>
 		</dependency>
 ```
 
-rlp decoder ,only decode
-java 8 required for Byte.toUnsignedInt. If you need low version of jdk,just branch it. 
+rlp decoder ,only decode, 
+
+java 8 required for Byte.toUnsignedInt. 
+
+If you need runring under low version of jdk,just branch it. 
