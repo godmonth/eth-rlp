@@ -4,11 +4,9 @@ import java.util.List;
 
 import org.apache.commons.lang3.ArrayUtils;
 import org.testng.annotations.Test;
+import org.web3j.protocol.core.methods.request.RawTransaction;
 
-import com.godmonth.eth.rlp.RLPElement;
-import com.godmonth.eth.rlp.RLPItem;
-import com.godmonth.eth.rlp.RLPList;
-import com.godmonth.eth.rlp.RlpDecoder;
+import com.godmonth.eth.rlp.web3j.RawTransactionParser;
 
 public class RlpDecoderTest {
 
@@ -85,6 +83,8 @@ public class RlpDecoderTest {
 
 	@Test
 	public void testName() throws Exception {
-		System.out.println(ArrayUtils.toString("".getBytes()));
+		String s = "f869708504a817c801830f424094ca2b061e4cb4f90f7bf227bd4116692cd0093a198084e8510fc91ba0cb4d04229253707d6c9d521c96d217b26bde199450be225fd26c1f07396cc252a0222dba741c6efc8caabbee65bd4e2301f8e1b2737a3fa96ac67c77aed98c955c";
+		RawTransaction parse = RawTransactionParser.parse(s);
+		System.out.println(parse.getData());
 	}
 }

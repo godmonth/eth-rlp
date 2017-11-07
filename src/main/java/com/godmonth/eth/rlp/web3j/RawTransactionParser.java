@@ -19,16 +19,8 @@ public class RawTransactionParser {
 	private RawTransactionParser() {
 	}
 
-	public static RawTransaction parse(String signMessageHex) {
-		String input = Numeric.cleanHexPrefix(signMessageHex);
-		byte[] decodeHex;
-		try {
-			decodeHex = Hex.decodeHex(input.toCharArray());
-		} catch (DecoderException e1) {
-			throw new ContextedRuntimeException(e1);
-		}
-
-		RLPList rlpList = (RLPList) RlpDecoder.decode(decodeHex);
+	public static RawTransaction parse(RLPElement rlpElement) {
+		RLPList rlpList = (RLPList) rlpElement;
 		List<RLPElement> elements = rlpList.getElements();
 		BigInteger nonce = null;
 		{
@@ -84,5 +76,17 @@ public class RawTransactionParser {
 		}
 
 		return RawTransaction.createTransaction(nonce, gasPrice, gasLimit, to, value, data);
+	}
+
+	public static RawTransaction parse(String signMessageHex) {
+		String input = Numeric.cleanHexPrefix(signMessageHex);
+		byte[] decodeHex;
+		try {
+			decodeHex = Hex.decodeHex(input.toCharArray());
+		} catch (DecoderException e1) {
+			throw new ContextedRuntimeException(e1);
+		}
+		RLPElement decode = RlpDecoder.decode(decodeHex);
+		return parse(decode);
 	}
 }
