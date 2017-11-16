@@ -7,6 +7,8 @@ import org.apache.commons.codec.DecoderException;
 import org.apache.commons.codec.binary.Hex;
 import org.apache.commons.lang3.ArrayUtils;
 import org.apache.commons.lang3.exception.ContextedRuntimeException;
+import org.apache.commons.lang3.tuple.Pair;
+import org.web3j.crypto.Sign;
 import org.web3j.protocol.core.methods.request.RawTransaction;
 import org.web3j.utils.Numeric;
 
@@ -19,7 +21,7 @@ public class RawTransactionParser {
 	private RawTransactionParser() {
 	}
 
-	public static RawTransaction parse(RLPElement rlpElement) {
+	public static RawTransaction parseRawTransaction(RLPElement rlpElement) {
 		RLPList rlpList = (RLPList) rlpElement;
 		List<RLPElement> elements = rlpList.getElements();
 		BigInteger nonce = null;
@@ -78,7 +80,48 @@ public class RawTransactionParser {
 		return RawTransaction.createTransaction(nonce, gasPrice, gasLimit, to, value, data);
 	}
 
-	public static RawTransaction parse(String signMessageHex) {
+	public static Sign.SignatureData parseSignatureData(RLPElement rlpElement) {
+		RLPList rlpList = (RLPList) rlpElement;
+		List<RLPElement> elements = rlpList.getElements();
+		byte v = 0;
+		{
+			RLPItem rlpItem = (RLPItem) elements.get(6);
+			byte[] rlpData = rlpItem.getRLPData();
+			if (ArrayUtils.isNotEmpty(rlpData)) {
+				v = rlpData[0];
+			}
+		}
+		byte[] r = null;
+		{
+			RLPItem rlpItem = (RLPItem) elements.get(7);
+			byte[] rlpData = rlpItem.getRLPData();
+			if (ArrayUtils.isNotEmpty(rlpData)) {
+				r = rlpData;
+			} else {
+				r = new byte[0];
+			}
+		}
+		byte[] s = null;
+		{
+			RLPItem rlpItem = (RLPItem) elements.get(8);
+			byte[] rlpData = rlpItem.getRLPData();
+			if (ArrayUtils.isNotEmpty(rlpData)) {
+				s = rlpData;
+			} else {
+				s = new byte[0];
+			}
+		}
+
+		return new Sign.SignatureData(v, r, s);
+	}
+
+	public static Pair<RawTransaction, Sign.SignatureData> parseFull(RLPElement rlpElement) {
+		RawTransaction rawTransaction = parseRawTransaction(rlpElement);
+		Sign.SignatureData signatureData = parseSignatureData(rlpElement);
+		return Pair.of(rawTransaction, signatureData);
+	}
+
+	public static Pair<RawTransaction, Sign.SignatureData> parseFull(String signMessageHex) {
 		String input = Numeric.cleanHexPrefix(signMessageHex);
 		byte[] decodeHex;
 		try {
@@ -87,6 +130,6 @@ public class RawTransactionParser {
 			throw new ContextedRuntimeException(e1);
 		}
 		RLPElement decode = RlpDecoder.decode(decodeHex);
-		return parse(decode);
+		return parseFull(decode);
 	}
 }
