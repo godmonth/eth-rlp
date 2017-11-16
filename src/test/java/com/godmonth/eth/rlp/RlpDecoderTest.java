@@ -6,7 +6,7 @@ import org.apache.commons.lang3.ArrayUtils;
 import org.testng.annotations.Test;
 import org.web3j.protocol.core.methods.request.RawTransaction;
 
-import com.godmonth.eth.rlp.web3j.RawTransactionParser;
+import com.godmonth.eth.rlp.web3j.SignMessageParser;
 
 public class RlpDecoderTest {
 

@@ -17,8 +17,8 @@ import com.godmonth.eth.rlp.RLPItem;
 import com.godmonth.eth.rlp.RLPList;
 import com.godmonth.eth.rlp.RlpDecoder;
 
-public class RawTransactionParser {
-	private RawTransactionParser() {
+public class SignMessageParser {
+	private SignMessageParser() {
 	}
 
 	public static RawTransaction parseRawTransaction(RLPElement rlpElement) {
