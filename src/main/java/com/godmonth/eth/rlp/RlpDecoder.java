@@ -5,10 +5,25 @@ import java.nio.ByteOrder;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.apache.commons.codec.DecoderException;
+import org.apache.commons.codec.binary.Hex;
 import org.apache.commons.lang3.ArrayUtils;
+import org.apache.commons.lang3.StringUtils;
+import org.apache.commons.lang3.exception.ContextedRuntimeException;
 
 public class RlpDecoder {
 	private RlpDecoder() {
+	}
+
+	public static RLPElement decodeHex(String hex) {
+		if (StringUtils.startsWithIgnoreCase(hex, "0x")) {
+			hex = StringUtils.substring(hex, 2);
+		}
+		try {
+			return decode(Hex.decodeHex(hex));
+		} catch (DecoderException e) {
+			throw new ContextedRuntimeException(e);
+		}
 	}
 
 	public static RLPElement decode(byte[] input) {

@@ -3,12 +3,16 @@ package com.godmonth.eth.rlp;
 import java.util.List;
 
 import org.apache.commons.lang3.ArrayUtils;
+import org.bouncycastle.util.encoders.Hex;
 import org.testng.annotations.Test;
-import org.web3j.protocol.core.methods.request.RawTransaction;
-
-import com.godmonth.eth.rlp.web3j.SignMessageParser;
 
 public class RlpDecoderTest {
+	@Test
+	public void decodeHex() {
+		String s = "0x0000000000000000000000006ea7eb2c8d9ff708f0aae485d596a00c9763c234";
+		RLPElement decodeHex = RlpDecoder.decodeHex(s);
+		System.out.println(decodeHex);
+	}
 
 	@Test
 	public void decode() {
